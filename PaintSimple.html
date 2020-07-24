@@ -1,0 +1,33 @@
+<html> 
+	<head>
+		<title> Write Numbers </title>
+	</head>
+	<body> 
+			<canvas id = "can" height="400" width="300"  style="border:2px solid;" ></canvas> <br>
+			<button onclick="window.location.reload()">Reset</button> <br>
+			<a href="" id="img-file" onclick="SaveImage()"  download="image.png">Download</a>
+
+		<script>
+			var canvas = document.getElementById("can");	//drawing area variable
+			var c = canvas.getContext('2d');
+			var md= false; 									//mouse down
+
+			canvas.addEventListener('mousedown',function(){ md=true });
+			canvas.addEventListener('mouseup',function(){ md=false });
+			canvas.addEventListener('mousemove', down)
+			
+			function down (e) {
+				var rect = canvas.getBoundingClientRect();
+				if(md) {
+					c.fillRect(e.clientX-rect.left,e.clientY-rect.top,18,18);
+				}
+			};
+
+			function SaveImage(){
+			    var imageFile = document.getElementById("img-file");
+			    imageFile.setAttribute('href', canvas.toDataURL());
+			}
+
+		</script>
+	</body>
+</html>
